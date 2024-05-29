@@ -1,0 +1,32 @@
+package "User's Browser" {
+    [User Interface]
+    [HTTP Requests]
+}
+
+package "Content Delivery Network (CDN)" {
+    [Cache]
+    [Serve Images]
+}
+
+package "Image Processing Service" {
+    [Image Processing]
+    [Optimization]
+}
+
+package "Original Image Repository" {
+    [Storage]
+}
+
+[User's Browser] --> [HTTP Requests]
+[HTTP Requests] --> [Content Delivery Network (CDN)]: Request for Images
+[Content Delivery Network (CDN)] --> [Cache]
+[Content Delivery Network (CDN)] --> [Serve Images]
+[Serve Images] --> [User's Browser]: Image Response
+[Content Delivery Network (CDN)] --> [Image Processing Service]: Request for Optimization
+[Image Processing Service] --> [Original Image Repository]: Retrieve Original Image
+[Original Image Repository] --> [Image Processing Service]: Original Image
+[Image Processing Service] --> [Image Processing]: Process and Optimize Image
+[Image Processing] --> [Content Delivery Network (CDN)]: Optimized Image
+[Content Delivery Network (CDN)] --> [Cache]
+
+@enduml
